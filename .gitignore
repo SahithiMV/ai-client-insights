@@ -1,0 +1,19 @@
+# .gitignore
+# virtualenv
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+# cache & build
+__pycache__/
+*.egg-info/
+*.log
+.cache/
+# local data
+src/data/*.csv
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
