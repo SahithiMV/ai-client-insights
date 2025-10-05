@@ -1,9 +1,10 @@
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
+from dotenv import load_dotenv
 from typing import List
 from src.ai.data_pipeline import load_and_clean_feedback
 from src.ai.analyzer import analyze_sentiment, summarize_texts, summarize_texts_humanized
-
+load_dotenv()
 app = FastAPI(title="AI Client Insight API", version="0.1.0")
 
 

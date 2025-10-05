@@ -68,35 +68,25 @@ def summarize_texts(texts: List[str], max_sentences: int = 2) -> str:
 
     return summary
 def humanize_summary_llm(summary: str, max_words: int = 40) -> str:
-    """
-    If OPENAI_API_KEY is set, rewrite the summary to be more natural and concise.
-    Falls back to the original summary on any error.
-    """
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key or not summary.strip():
-        return summary  # no-op
-
+        print("[humanizer] Skipped: no API key or empty summary")
+        return summary
     try:
         client = OpenAI(api_key=api_key)
-        prompt = (
-            "Rewrite the following feedback summary into 1-2 natural, concise sentences. "
-            "Keep the meaning the same, do not add new facts, and aim for a positive, neutral tone. "
-            f"Limit to ~{max_words} words.\n\nSummary:\n{summary}"
-        )
-        # Lightweight, low-cost model is fine here; change if you prefer.
         resp = client.chat.completions.create(
             model="gpt-4o-mini",
             temperature=0.3,
             messages=[
                 {"role": "system", "content": "You are a concise product analyst."},
-                {"role": "user", "content": prompt},
+                {"role": "user", "content": f"Rewrite in 1–2 concise sentences (<{max_words} words), keep meaning:\n\n{summary}"}
             ],
-            timeout=10,
+            timeout=15,
         )
-        text = resp.choices[0].message.content.strip()
-        # Tiny cleanup
-        return text.replace("  ", " ").strip()
-    except Exception:
+        print("[humanizer] Success")
+        return " ".join(resp.choices[0].message.content.split())
+    except Exception as e:
+        print(f"[humanizer] Error -> {e!r}")
         return summary
 
 def summarize_texts_humanized(texts: list[str], max_sentences: int = 2, max_words: int = 40) -> str:

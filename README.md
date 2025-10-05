@@ -14,6 +14,22 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Set API Key
+To use the humanize version of text summary, add your OPEN_API_KEY
+
+Copy the example environment file and insert your OpenAI key:
+```bash
+cp .env.example .env
+```
+Edit .env:
+```bash
+OPENAI_API_KEY=sk-<your-full-key-here>
+```
+If you prefer, you can export it directly instead:
+```bash
+export OPENAI_API_KEY=sk-<your-key>
+```
+
 ## Run in Docker
 
 ### Build the image
