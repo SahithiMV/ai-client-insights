@@ -1,7 +1,6 @@
 #  AI Client Insight Dashboard
 
-A lightweight **FastAPI** application that demonstrates how to ingest messy customer feedback, clean it, analyze sentiment, and summarize insights — all within a single deployable backend.  
-Built to showcase practical use of **FastAPI**, **Hugging Face**, **TF-IDF summarization**, and optional **OpenAI-powered rewording** in under 8 hours.
+A lightweight **FastAPI** application that demonstrates how to ingest messy customer feedback, clean it, analyze sentiment, and summarize insights — all within a single deployable backend. Built to showcase practical use of **FastAPI**, **Hugging Face**, **TF-IDF summarization**, and optional **OpenAI-powered rewording**.
 
 ---
 
