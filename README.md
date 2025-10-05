@@ -18,25 +18,31 @@ pip install -r requirements.txt
 ## Run in Docker
 
 ### Build the image
-
+```bash
 make build
+```
 
 ### Run the container
+```bash
 make serve
+```
 
 ### Test API
+```bash
 curl -s http://127.0.0.1:8000/health
 curl -s http://127.0.0.1:8000/feedback | jq
 curl -s -X POST http://127.0.0.1:8000/analyze_feedback \
   -H "Content-Type: application/json" \
   -d '{"text": "delivery was slow but driver polite"}' | jq
 curl -s http://127.0.0.1:8000/summary | jq
+```
 
 ## API Endpoints
-Endpoint	Method	Description
-/	GET	Root endpoint — returns app info
-/health	GET	Health check
-/feedback	GET	Loads and cleans sample feedback from src/data/feedback_raw.csv
-/analyze_feedback	POST	Sentiment analysis using Hugging Face (distilbert-base-uncased-finetuned-sst-2-english)
-/summary	GET	Extractive summary using TF-IDF (fast, no model downloads)
-/summary?humanize=1	GET	Rewrites the summary into natural English using GPT (if OPENAI_API_KEY is set)
+| Endpoint | Method | Description |
+|-----------|---------|-------------|
+| `/` | GET | Root endpoint — returns app info |
+| `/health` | GET | Health check |
+| `/feedback` | GET | Loads and cleans sample feedback from `src/data/feedback_raw.csv` |
+| `/analyze_feedback` | POST | Sentiment analysis using Hugging Face (`distilbert-base-uncased-finetuned-sst-2-english`) |
+| `/summary` | GET | Extractive summary using TF-IDF (fast, no model downloads) |
+| `/summary?humanize=1` | GET | Rewrites the summary into natural English using GPT (if `OPENAI_API_KEY` is set) |
