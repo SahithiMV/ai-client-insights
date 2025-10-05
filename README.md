@@ -8,7 +8,7 @@ A lightweight **FastAPI** application that demonstrates how to ingest messy cust
 
 ### Clone and Setup
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/SahithiMV/ai-client-insights.git
 cd ai-client-insights
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
