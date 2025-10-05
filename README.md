@@ -13,6 +13,7 @@ git clone <your-repo-url>
 cd ai-client-insights
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+```
 
 ## Run in Docker
 
